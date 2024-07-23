@@ -3,17 +3,22 @@ package top.arturkus.MyTimePlan.services;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import top.arturkus.MyTimePlan.entities.Star;
+import top.arturkus.MyTimePlan.exceptions.NotFoundException;
 
 import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+@SpringBootTest
 public class StarServiceTest {
 
-    private final StarService starService = new StarService();
+    @Autowired
+    private StarService starService;
 
     @Test
-    public void findClosestStarsTest() {
+    public void findClosestStarsTest() throws NotFoundException {
         //GIVEN
         List<Star> stars = Arrays.asList(
                 new Star("Alpha", 4),
@@ -32,7 +37,7 @@ public class StarServiceTest {
     }
 
     @Test
-    public void getNumberOfStarsByDistancesTest() {
+    public void getNumberOfStarsByDistancesTest() throws NotFoundException {
         //GIVEN
         List<Star> stars = Arrays.asList(
                 new Star("Alpha", 4),
@@ -51,7 +56,7 @@ public class StarServiceTest {
     }
 
     @Test
-    public void getUniqueStarsTest() {
+    public void getUniqueStarsTest() throws NotFoundException {
         //GIVEN
         Collection<Star> stars = Arrays.asList(
                 new Star("Alpha", 4L),
